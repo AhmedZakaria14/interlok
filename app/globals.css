@@ -54,3 +54,49 @@
   .floating-contact-link { transition: none; }
   .floating-contact-link:hover { transform: none; }
 }
+
+/* Mobile layout and touch interaction refinements. */
+main, .hero-copy, .quote-grid > *, .about-grid > *, .footer-grid > * { min-width: 0; }
+input, select, textarea { scroll-margin-block: 110px; }
+.lightbox { margin: auto; overscroll-behavior: contain; }
+.close-dialog { min-width: 48px; min-height: 48px; display: grid; place-items: center; }
+.quote-fallback a { text-decoration: underline; font-weight: 700; }
+@media (max-width: 800px) {
+  .nav { max-height: calc(100dvh - 110px); overflow-y: auto; overscroll-behavior: contain; }
+  .nav a { min-height: 48px; }
+  .nav.open { animation: menu-enter 180ms ease-out; }
+  .quote-grid input, .quote-grid select, .quote-grid textarea { font-size: 16px; min-height: 48px; }
+  .quote-grid textarea { resize: vertical; }
+  .floating-contact-link { width: 52px; height: 52px; min-height: 52px; padding: 13px; }
+  .floating-contact-link > span { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .floating-contact-link svg { width: 25px; height: 25px; }
+  body:has(.quote-grid input:focus, .quote-grid textarea:focus, .quote-grid select:focus) .floating-contact { visibility: hidden; pointer-events: none; }
+  .filters button { min-height: 44px; }
+  .lightbox { width: calc(100% - 20px); max-height: calc(100dvh - 24px); padding: 56px 12px 14px; }
+  .lightbox-image { height: min(68dvh, 650px); }
+  .lightbox p { font-size: 15px; line-height: 1.6; }
+  .header-inner { gap: 12px; }
+  .brand { gap: 9px; }
+}
+@media (max-width: 380px) {
+  .container { width: calc(100% - 28px); }
+  .brand strong { font-size: 18px; }
+  .brand small { font-size: 10px; }
+  .brand img { width: 36px; height: 36px; }
+  .hero h1 { font-size: 32px; }
+  .hero .actions { display: grid; grid-template-columns: 1fr; }
+  .hero .actions .button { width: 100%; }
+  .quote-grid h2 { font-size: 29px; }
+  .phone-link { font-size: 25px; }
+  .section-heading h2 { font-size: 28px; }
+  .service-strip { column-gap: 10px; }
+  .service-strip span { width: calc(50% - 5px); }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-visual { height: 280px; }
+  .lightbox-image { height: 52dvh; }
+  .lightbox { padding-top: 48px; }
+}
+@keyframes menu-enter { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+/* Keep readable input text in landscape phones as well as portrait. */
+.quote-grid input, .quote-grid select, .quote-grid textarea { font-size: 16px; }
