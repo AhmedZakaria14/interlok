@@ -1,2 +1,14 @@
 import Image from 'next/image';
-export default function BrandLogo() { return <span className="brand"><Image src="/logo.svg" width={48} height={48} alt=""/><span><strong>إنترلوك وبلدورات</strong><small>أعمال الرصف والمساحات الخارجية</small></span></span>; }
+import { COMPANY_NAME } from '@/lib/constants';
+
+export default function BrandLogo() {
+  return (
+    <span className="brand">
+      <Image src="/logo.svg" width={48} height={48} alt={COMPANY_NAME} />
+      <span>
+        <strong>شركة الأنس</strong>
+        <small>تنسيق الحدائق والمنتزهات · إنترلوك وبلدورة</small>
+      </span>
+    </span>
+  );
+}

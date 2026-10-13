@@ -1,4 +1,5 @@
 import PageIntro from '@/components/PageIntro';
 import Section from '@/components/ServicesSection';
-export const metadata={title:'خدمات الإنترلوك والبلدورات'};
-export default function Page(){return <><PageIntro title="خدمات الإنترلوك والبلدورات" text="اختر الخدمة المناسبة لموقعك، وناقش المتطلبات قبل التنفيذ."/><Section/></>}
+import { COMPANY_NAME } from '@/lib/constants';
+export const metadata={title:`خدمات ${COMPANY_NAME}`};
+export default function Page(){return <><PageIntro title="خدمات الحدائق والمنتزهات والإنترلوك" text="تنفيذ وتنسيق الحدائق العامة والخاصة، ممرات المشي، شبكات الري، وأعمال الإنترلوك والبلدورات للمشاريع الكبرى."/><Section/></>}

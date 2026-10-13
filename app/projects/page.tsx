@@ -1,4 +1,5 @@
 import PageIntro from '@/components/PageIntro';
 import Section from '@/components/ProjectsGallery';
-export const metadata={title:'معرض الصور'};
-export default function Page(){return <><PageIntro title="معرض الصور" text="صور من أعمال الرصف والبلدورات ومراحل العمل، دون افتراض مساحات أو مواقع غير موثقة."/><Section/></>}
+import { COMPANY_NAME } from '@/lib/constants';
+export const metadata={title:`معرض أعمال ${COMPANY_NAME}`};
+export default function Page(){return <><PageIntro title="معرض أعمال الحدائق والمشاريع" text="صور من أعمال تنفيذ وتنسيق الحدائق، ممرات المشي، أحواض الزراعة، ورصف الساحات والمواقف لشركة الأنس."/><Section/></>}

@@ -3,4 +3,92 @@ import {useState,useRef,useEffect,useId} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {GALLERY,imagePath} from '@/lib/constants';
-export default function ProjectsGallery({limit}:{limit?:number}){const [category,setCategory]=useState('الكل');const [selected,setSelected]=useState<(typeof GALLERY)[number]|null>(null);const dialog=useRef<HTMLDialogElement>(null);const titleId=useId();useEffect(()=>{if(!selected)return;const previous=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{document.body.style.overflow=previous;};},[selected]);const items=(limit?GALLERY.slice(0,limit):GALLERY).filter(x=>category==='الكل'||x.category===category);return <section className="gallery-section section" id="projects"><div className="container"><div className="section-heading"><div><span className="eyebrow">التفاصيل في الصورة</span><h2>رصف، حواف، ومراحل عمل</h2></div><p>صور للمساحات والتشكيلات والبلدورات. اضغط على أي صورة لمشاهدتها كاملة.</p></div>{!limit&&<div className="filters" aria-label="تصفية الصور">{['الكل','رصف','بلدورات','مراحل العمل'].map(c=><button key={c} aria-pressed={category===c} onClick={()=>setCategory(c)}>{c}</button>)}</div>}<div className="gallery-grid">{items.map(x=><button className="gallery-card" key={x.image} onClick={()=>{setSelected(x);dialog.current?.showModal();}} aria-label={`تكبير: ${x.title}`}><div className="gallery-image"><Image src={imagePath(x.image)} alt={x.title} fill sizes="(max-width:600px) 100vw, (max-width:1000px) 50vw, 33vw"/></div><span><small>{x.category}</small><strong>{x.title}</strong><b aria-hidden="true">↗</b></span></button>)}</div>{limit&&<div className="center"><Link className="button secondary" href="/projects">استعرض كل الصور ←</Link></div>}<dialog ref={dialog} className="lightbox" aria-labelledby={titleId} onClose={()=>setSelected(null)} onClick={e=>{if(e.target===e.currentTarget)dialog.current?.close();}}><button className="close-dialog" aria-label="إغلاق الصورة" onClick={()=>dialog.current?.close()}>✕</button>{selected&&<><div className="lightbox-image"><Image src={imagePath(selected.image)} alt={selected.title} fill sizes="90vw" style={{objectFit:'contain'}}/></div><p id={titleId}>{selected.title}</p></>}</dialog></div></section>}
+
+export default function ProjectsGallery({limit}:{limit?:number}){
+  const [category,setCategory]=useState('الكل');
+  const [selected,setSelected]=useState<(typeof GALLERY)[number]|null>(null);
+  const dialog=useRef<HTMLDialogElement>(null);
+  const titleId=useId();
+
+  useEffect(()=>{
+    if(!selected)return;
+    const previous=document.body.style.overflow;
+    document.body.style.overflow='hidden';
+    return()=>{document.body.style.overflow=previous;};
+  },[selected]);
+
+  const filterCategories = ['الكل', 'حدائق ومتنزهات', 'ممرات ومسارات', 'أحواض وزراعة', 'إنترلوك وبلدورات', 'مراحل العمل'];
+  const items=(limit?GALLERY.slice(0,limit):GALLERY).filter(x=>category==='الكل'||x.category===category);
+
+  return (
+    <section className="gallery-section section" id="projects">
+      <div className="container">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">معرض أعمال المشاريع والحدائق</span>
+            <h2>حدائق، ممرات مشي، وإنترلوك المشاريع</h2>
+          </div>
+          <p>
+            نماذج من أعمال تنفيذ وتنسيق الحدائق العامة، مضامير المشي، أحواض الزراعة، ورصف الساحات والمواقف. اضغط على أي صورة للتكبير.
+          </p>
+        </div>
+
+        {!limit && (
+          <div className="filters" aria-label="تصفية صور المشاريع">
+            {filterCategories.map(c=>(
+              <button key={c} aria-pressed={category===c} onClick={()=>setCategory(c)}>
+                {c}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="gallery-grid">
+          {items.map(x=>(
+            <button 
+              className="gallery-card" 
+              key={x.image} 
+              onClick={()=>{setSelected(x);dialog.current?.showModal();}} 
+              aria-label={`تكبير: ${x.title}`}
+            >
+              <div className="gallery-image">
+                <Image src={imagePath(x.image)} alt={x.title} fill sizes="(max-width:600px) 100vw, (max-width:1000px) 50vw, 33vw"/>
+              </div>
+              <span>
+                <small>{x.category}</small>
+                <strong>{x.title}</strong>
+                <b aria-hidden="true">↗</b>
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {limit && (
+          <div className="center">
+            <Link className="button secondary" href="/projects">
+              استعرض جميع صور الحدائق والمشاريع ←
+            </Link>
+          </div>
+        )}
+
+        <dialog 
+          ref={dialog} 
+          className="lightbox" 
+          aria-labelledby={titleId} 
+          onClose={()=>setSelected(null)} 
+          onClick={e=>{if(e.target===e.currentTarget)dialog.current?.close();}}
+        >
+          <button className="close-dialog" aria-label="إغلاق الصورة" onClick={()=>dialog.current?.close()}>✕</button>
+          {selected && (
+            <>
+              <div className="lightbox-image">
+                <Image src={imagePath(selected.image)} alt={selected.title} fill sizes="90vw" style={{objectFit:'contain'}}/>
+              </div>
+              <p id={titleId}>{selected.title}</p>
+            </>
+          )}
+        </dialog>
+      </div>
+    </section>
+  );
+}

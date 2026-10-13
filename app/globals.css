@@ -100,3 +100,173 @@ input, select, textarea { scroll-margin-block: 110px; }
 @keyframes menu-enter { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 /* Keep readable input text in landscape phones as well as portrait. */
 .quote-grid input, .quote-grid select, .quote-grid textarea { font-size: 16px; }
+
+/* Hero quality highlight badges */
+.hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-block: 20px 26px;
+}
+.highlight-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #c9d5c5;
+  color: var(--green);
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 2px 6px #173b360a;
+}
+.highlight-pill span {
+  color: #1a7a4c;
+  font-weight: 900;
+}
+
+/* Parks Focus Section */
+.parks-section {
+  background: linear-gradient(180deg, #edf3ea 0%, #faf9f5 100%);
+  border-top: 1px solid #dce4d9;
+  border-bottom: 1px solid #dce4d9;
+}
+.parks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+.park-feature-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 30px 24px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+}
+.park-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px #173b3612;
+  border-color: #b5c7b3;
+}
+.park-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  background: #eef4ec;
+  margin-bottom: 18px;
+}
+.park-feature-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.park-feature-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Contractor Collaboration Banner */
+.contractor-banner {
+  margin-top: 55px;
+  background: var(--green);
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 44px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 36px;
+  align-items: center;
+  box-shadow: 0 16px 40px #173b3624;
+}
+.contractor-copy h3 {
+  font-size: clamp(24px, 2.5vw, 32px);
+  color: #ffffff;
+  margin-block: 10px 14px;
+  line-height: 1.4;
+}
+.contractor-tag {
+  display: inline-block;
+  background: #25514a;
+  color: var(--sand);
+  padding: 5px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid #ffffff24;
+}
+.contractor-copy p {
+  color: #d1ded7;
+  font-size: 16px;
+  margin-bottom: 22px;
+  max-width: 620px;
+}
+.contractor-perks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e4efe9;
+}
+.contractor-perks span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.contractor-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.contractor-actions .button {
+  width: 100%;
+  background: var(--sand);
+  color: #173b36;
+  border-color: var(--sand);
+}
+.contractor-actions .button:hover {
+  background: #edd09e;
+}
+.contractor-actions .button.secondary {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff44;
+}
+.contractor-actions .button.secondary:hover {
+  background: #ffffff14;
+}
+
+/* Service card badge */
+.service-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(23, 59, 54, 0.88);
+  backdrop-filter: blur(4px);
+  color: #faf9f5;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 30px;
+  z-index: 2;
+}
+
+@media (max-width: 950px) {
+  .parks-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .contractor-banner { grid-template-columns: 1fr; padding: 32px 24px; gap: 28px; }
+  .contractor-perks { grid-template-columns: 1fr; }
+}
+@media (max-width: 580px) {
+  .parks-grid { grid-template-columns: 1fr; }
+  .hero-highlights { flex-direction: column; gap: 8px; }
+  .highlight-pill { width: 100%; font-size: 13px; }
+}

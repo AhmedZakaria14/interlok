@@ -1,5 +1,40 @@
 import Image from 'next/image';
 import PageIntro from '@/components/PageIntro';
-import {CONTACT_INFO,imagePath} from '@/lib/constants';
-export const metadata={title:'عن النشاط'};
-export default function Page(){return <><PageIntro title="أعمال الرصف والمساحات الخارجية" text="إنترلوك وبلدورات للأحواش والمداخل والأرصفة والممرات."/><section className="section container about-grid"><div><span className="eyebrow">المساحة تبدأ من تفاصيلها</span><h2>اختيار مناسب للمكان والاستخدام</h2><p>يعرض الموقع خدمات تركيب الإنترلوك والبلدورات وتجهيز الممرات والأرصفة وصيانة الرصف. يمكنك الاطلاع على الصور ومناقشة شكل الأرضية ومتطلبات المشروع مباشرة.</p><p>تُحدد الخامات والمقاسات والمواصفات والتكلفة بعد مراجعة حالة الموقع. وللتأكد من إمكانية الخدمة، أرسل المدينة والحي مع صور المساحة الحالية.</p><a className="button" href={CONTACT_INFO.whatsappUrl}>ناقش تفاصيل موقعك ↗</a></div><Image src={imagePath(6)} alt="تشكيلات رصف في ساحة خارجية" width={900} height={900}/></section></>}
+import {COMPANY_NAME, CONTACT_INFO, imagePath} from '@/lib/constants';
+
+export const metadata={title:`عن ${COMPANY_NAME} | تنفيذ الحدائق والمتنزهات والإنترلوك`};
+
+export default function Page(){
+  return (
+    <>
+      <PageIntro 
+        title="تنفيذ وتنسيق الحدائق والمتنزهات والمشاريع الكبرى" 
+        text="حلول متكاملة للمساحات الخضراء، ممرات المشي، شبكات الري، وأعمال الإنترلوك والبلدورات."
+      />
+      <section className="section container about-grid">
+        <div>
+          <span className="eyebrow">جودة واحترافية في التنفيذ</span>
+          <h2>شريكك المعتمد لمشاريع الحدائق واللاندسكيب</h2>
+          <p>
+            تتخصص شركة الأنس في تنفيذ وتنسيق الحدائق العامة والخاصة، المرافق الترفيهية، ممرات المشي ومضامير الجري، أحواض الزراعة وتحديد الجزر بالبلدورات، وتمديد شبكات الري الحديثة، إلى جانب رصف الساحات الكبرى والمواقف بالإنترلوك عالي التحمل.
+          </p>
+          <p>
+            نعمل بشكل مباشر مع الشركات، المقاولين، وأصحاب المشاريع، مع التزام تام بالمواصفات الهندسية، دقة التنفيذ، والالتزام بالجداول الزمنية، وبأسعار مدروسة ومنافسة تناسب متطلبات المشاريع الكبيرة والمتوسطة.
+          </p>
+          <p>
+            تغطي خدماتنا حفر الباطن والمناطق القريبة، بالإضافة إلى الجاهزية التامة لتنفيذ المشاريع الكبرى في مختلف مناطق المملكة.
+          </p>
+          <a className="button" href={CONTACT_INFO.whatsappUrl}>
+            ناقش تفاصيل مشروعك معنا ↗
+          </a>
+        </div>
+        <Image 
+          src={imagePath(7)} 
+          alt="تنفيذ ممرات الحدائق وأحواض الزراعة - شركة الأنس" 
+          width={900} 
+          height={900}
+        />
+      </section>
+    </>
+  );
+}
