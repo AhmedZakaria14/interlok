@@ -1,4 +1,4 @@
-export const CONTACT_INFO = { phone: '0591066067', callUrl: 'tel:+966591066067', whatsappUrl: 'https://wa.me/966591066067' };
+export const CONTACT_INFO = { phone: '0546269247', callUrl: 'tel:+966546269247', whatsappUrl: 'https://wa.me/966546269247' };
 export const SERVICES = [
  {slug:'interlock-installation',title:'تركيب الإنترلوك',description:'رصف الأحواش والمداخل والساحات، واختيار توزيع الألوان والتشكيلات بما يناسب المساحة.',image:1},
  {slug:'curbstone-installation',title:'تركيب البلدورات',description:'تحديد حواف الأرصفة والأحواض والمسارات، وتركيب البلدورات وفق تخطيط الموقع.',image:3},
