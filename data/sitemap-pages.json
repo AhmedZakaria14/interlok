@@ -1,0 +1,77 @@
+[
+  {
+    "path": "/",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 1.0
+  },
+  {
+    "path": "/services",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/projects",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/about",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/contact",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/parks-landscaping",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/garden-walkways",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/irrigation-greenery",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/curbstone-installation",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/interlock-installation",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/outdoor-seating",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/sidewalk-construction",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/parking-interlock",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/services/interlock-maintenance",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  },
+  {
+    "path": "/privacy-policy",
+    "lastModified": "2026-10-30T00:09:35+00:00",
+    "priority": 0.8
+  }
+]
