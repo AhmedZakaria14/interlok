@@ -1,2 +1,5 @@
-import type {MetadataRoute} from 'next';
-export default function robots():MetadataRoute.Robots{const base=process.env.APP_URL?.replace(/\/$/,'');return {rules:{userAgent:'*',allow:'/'},...(base?{sitemap:base+'/sitemap.xml'}:{})};}
+import type { MetadataRoute } from 'next';
+import { SITE_URL, absoluteUrl } from '@/lib/site';
+export default function robots(): MetadataRoute.Robots {
+  return { rules: { userAgent: '*', allow: '/' }, sitemap: absoluteUrl('/sitemap.xml'), host: SITE_URL };
+}
