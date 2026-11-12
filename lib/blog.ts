@@ -1,5 +1,6 @@
 import 'server-only';
 import posts from '@/data/blog-posts.json';
+import { CONTACT_INFO } from '@/lib/constants';
 
 export type TextPart = { text: string; href?: string; bold?: boolean };
 export type ArticleText = { text: string; parts: TextPart[] };
@@ -18,6 +19,7 @@ export function getBlogPost(slug: string) {
   try { return postBySlug.get(decodeURIComponent(slug)); } catch { return undefined; }
 }
 
+export const articleTitle = (post: BlogPost) => `${post.title} | ${CONTACT_INFO.phone}`;
 export const articlePath = (post: BlogPost) => `/blog/${post.slug}`;
 export const sectionId = (index: number) => `section-${index + 1}`;
 export const subheadingId = (section: number, block: number) => `section-${section + 1}-heading-${block + 1}`;

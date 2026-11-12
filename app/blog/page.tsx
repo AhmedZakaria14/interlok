@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BlogCard from '@/components/BlogCard';
-import { articlePath, blogPosts } from '@/lib/blog';
+import { articlePath, articleTitle, blogPosts } from '@/lib/blog';
 import { absoluteUrl } from '@/lib/site';
 
 const title = 'مدونة الإنترلوك والبلدورات وتنسيق الحدائق';
@@ -18,7 +18,7 @@ export default function BlogPage() {
     '@context': 'https://schema.org', '@type': 'CollectionPage', name: title,
     url: absoluteUrl('/blog'), inLanguage: 'ar-SA',
     mainEntity: { '@type': 'ItemList', numberOfItems: blogPosts.length, itemListElement: blogPosts.map((post, index) => ({
-      '@type': 'ListItem', position: index + 1, url: absoluteUrl(articlePath(post)), name: post.title,
+      '@type': 'ListItem', position: index + 1, url: absoluteUrl(articlePath(post)), name: articleTitle(post),
     })) },
   };
   return <>

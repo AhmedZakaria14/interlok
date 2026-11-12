@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ArticleBody from '@/components/ArticleBody';
 import BlogCard from '@/components/BlogCard';
-import { articlePath, blogPosts, formatArticleDate, getBlogPost, getFaqItems, getRelatedPosts, sectionId, subheadingId } from '@/lib/blog';
+import { articlePath, articleTitle, blogPosts, formatArticleDate, getBlogPost, getFaqItems, getRelatedPosts, sectionId, subheadingId } from '@/lib/blog';
 import { COMPANY_NAME, CONTACT_INFO } from '@/lib/constants';
 import { absoluteUrl } from '@/lib/site';
 
@@ -16,15 +16,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getBlogPost((await params).slug);
   if (!post) return {};
   return {
-    title: { absolute: post.title }, description: post.description, keywords: post.keywords,
+    title: { absolute: articleTitle(post) }, description: post.description, keywords: post.keywords,
     authors: [{ name: post.author }], category: post.category,
     alternates: { canonical: articlePath(post) }, robots: { index: true, follow: true },
     openGraph: {
-      type: 'article', locale: 'ar_SA', url: articlePath(post), title: post.title,
+      type: 'article', locale: 'ar_SA', url: articlePath(post), title: articleTitle(post),
       description: post.description, publishedTime: post.publishedAt, modifiedTime: post.modifiedAt,
       authors: [post.author], images: [{ url: post.image, alt: post.imageAlt }],
     },
-    twitter: { card: 'summary_large_image', title: post.title, description: post.description, images: [post.image] },
+    twitter: { card: 'summary_large_image', title: articleTitle(post), description: post.description, images: [post.image] },
   };
 }
 
@@ -35,7 +35,7 @@ export default async function ArticlePage({ params }: Props) {
   const faqs = getFaqItems(post);
   const schemas = [{
     '@context': 'https://schema.org', '@type': 'BlogPosting', '@id': `${url}#article`,
-    headline: post.title, description: post.description, image: [absoluteUrl(post.image)],
+    headline: articleTitle(post), description: post.description, image: [absoluteUrl(post.image)],
     datePublished: post.publishedAt, dateModified: post.modifiedAt, inLanguage: 'ar-SA',
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     author: { '@type': 'Person', name: post.author },
@@ -46,7 +46,7 @@ export default async function ArticlePage({ params }: Props) {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'الرئيسية', item: absoluteUrl('/') },
       { '@type': 'ListItem', position: 2, name: 'المدونة', item: absoluteUrl('/blog') },
-      { '@type': 'ListItem', position: 3, name: post.title, item: url },
+      { '@type': 'ListItem', position: 3, name: articleTitle(post), item: url },
     ],
   }, ...(faqs.length ? [{
     '@context': 'https://schema.org', '@type': 'FAQPage',
@@ -58,7 +58,7 @@ export default async function ArticlePage({ params }: Props) {
     <article>
       <header className="article-header"><div className="container">
         <nav className="blog-breadcrumb" aria-label="مسار التنقل"><Link href="/">الرئيسية</Link><span aria-hidden="true">/</span><Link href="/blog">المدونة</Link><span aria-hidden="true">/</span><span aria-current="page">{post.keywords[0]}</span></nav>
-        <div className="article-heading-grid"><div><span className="blog-category">{post.category}</span><h1>{post.title}</h1><p className="article-description">{post.description}</p><div className="article-meta"><span>بقلم {post.author}</span><time dateTime={post.publishedAt}>{formatArticleDate(post.publishedAt)}</time><span>{post.readingTime} دقائق قراءة</span></div></div>
+        <div className="article-heading-grid"><div><span className="blog-category">{post.category}</span><h1>{post.title} | <bdi dir="ltr">{CONTACT_INFO.phone}</bdi></h1><p className="article-description">{post.description}</p><div className="article-meta"><span>بقلم {post.author}</span><time dateTime={post.publishedAt}>{formatArticleDate(post.publishedAt)}</time><span>{post.readingTime} دقائق قراءة</span></div></div>
         <figure className="article-cover"><Image src={post.image} alt={post.imageAlt} fill priority sizes="(max-width: 900px) 100vw, 48vw" /></figure></div>
       </div></header>
       <div className="container article-layout">

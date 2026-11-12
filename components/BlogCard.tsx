@@ -1,6 +1,7 @@
 import Image from 'next/image';
+import { CONTACT_INFO } from '@/lib/constants';
 import Link from 'next/link';
-import { articlePath, BlogPost, formatArticleDate } from '@/lib/blog';
+import { articlePath, articleTitle, BlogPost, formatArticleDate } from '@/lib/blog';
 
 export default function BlogCard({ post, featured = false }: { post: BlogPost; featured?: boolean }) {
   return (
@@ -12,9 +13,9 @@ export default function BlogCard({ post, featured = false }: { post: BlogPost; f
       <div className="blog-card-copy">
         <span className="blog-category">{post.category}</span>
         <div className="blog-card-meta"><time dateTime={post.publishedAt}>{formatArticleDate(post.publishedAt)}</time><span>{post.readingTime} دقائق قراءة</span></div>
-        <h2><Link href={articlePath(post)}>{post.title}</Link></h2>
+        <h2><Link href={articlePath(post)}>{post.title} | <bdi dir="ltr">{CONTACT_INFO.phone}</bdi></Link></h2>
         <p>{post.description}</p>
-        <Link href={articlePath(post)} className="blog-read-more" aria-label={`قراءة مقال ${post.title}`}>اقرأ المقال <span aria-hidden="true">↗</span></Link>
+        <Link href={articlePath(post)} className="blog-read-more" aria-label={`قراءة مقال ${articleTitle(post)}`}>اقرأ المقال <span aria-hidden="true">↗</span></Link>
       </div>
     </article>
   );
