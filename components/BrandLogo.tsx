@@ -7,7 +7,7 @@ export default function BrandLogo() {
       <Image src="/logo.svg" width={48} height={48} alt={COMPANY_NAME} />
       <span>
         <strong>شركة الأنس</strong>
-        <small>تنسيق الحدائق والمنتزهات · إنترلوك وبلدورة</small>
+        <small>إنترلوك وبلدورة · تنسيق الحدائق والمنتزهات</small>
       </span>
     </span>
   );
