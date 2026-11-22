@@ -1,5 +1,8 @@
 import 'server-only';
 import posts from '@/data/blog-posts.json';
+import posts16to20 from '@/data/blog-posts-16-20.json';
+import posts21to25 from '@/data/blog-posts-21-25.json';
+import posts26to30 from '@/data/blog-posts-26-30.json';
 import { CONTACT_INFO } from '@/lib/constants';
 
 export type TextPart = { text: string; href?: string; bold?: boolean };
@@ -12,7 +15,7 @@ export type BlogPost = {
   readingTime: number; excerpt: string; intro: ArticleText[]; sections: ArticleSection[]; relatedSlugs: string[];
 };
 
-export const blogPosts = posts as BlogPost[];
+export const blogPosts = [...posts, ...posts16to20, ...posts21to25, ...posts26to30] as BlogPost[];
 const postBySlug = new Map(blogPosts.map(post => [post.slug, post]));
 
 export function getBlogPost(slug: string) {

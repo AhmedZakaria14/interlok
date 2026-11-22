@@ -14,6 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const featuredPost = blogPosts[0];
+  const interlockPosts = blogPosts.filter(post => post.category === 'الإنترلوك والرصف');
+  const curbstonePosts = blogPosts.filter(post => post.category === 'البلدورات والأرصفة');
+  const interlockGridPosts = interlockPosts.filter(post => post.slug !== featuredPost.slug);
   const schema = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', name: title,
     url: absoluteUrl('/blog'), inLanguage: 'ar-SA',
@@ -29,14 +33,14 @@ export default function BlogPage() {
       <div className="blog-intro-note"><p>معرفة تساعدك على التخطيط بثقة. اكتشف الخامات المناسبة، وخطوات التنفيذ، وما يؤثر في تكلفة مشروعك.</p><div className="blog-topics"><a href="#interlock-guides">الإنترلوك والرصف ↓</a><a href="#curbstone-guides">البلدورات والأرصفة ↓</a></div></div></div>
     </div></header>
     <div className="container blog-content">
-      <BlogCard post={blogPosts[0]} featured />
+      <BlogCard post={featuredPost} featured />
       <section id="interlock-guides" className="blog-category-section" aria-labelledby="interlock-title">
-        <div className="blog-section-heading"><div><span className="eyebrow">الخامات، التكلفة، التنفيذ</span><h2 id="interlock-title">أدلة الإنترلوك والرصف</h2></div><span className="blog-guide-count">11 دليلًا</span></div>
-        <div className="blog-grid">{blogPosts.slice(1, 11).map(post => <BlogCard key={post.slug} post={post} />)}</div>
+        <div className="blog-section-heading"><div><span className="eyebrow">الخامات، التكلفة، التنفيذ</span><h2 id="interlock-title">أدلة الإنترلوك والرصف</h2></div><span className="blog-guide-count">{interlockPosts.length} دليلًا</span></div>
+        <div className="blog-grid">{interlockGridPosts.map(post => <BlogCard key={post.slug} post={post} />)}</div>
       </section>
       <section id="curbstone-guides" className="blog-category-section" aria-labelledby="curbstone-title">
-        <div className="blog-section-heading"><div><span className="eyebrow">حدود متقنة لمساحات منظمة</span><h2 id="curbstone-title">البلدورات والأرصفة</h2></div><span className="blog-guide-count">4 أدلة</span></div>
-        <div className="blog-grid">{blogPosts.slice(11).map(post => <BlogCard key={post.slug} post={post} />)}</div>
+        <div className="blog-section-heading"><div><span className="eyebrow">حدود متقنة لمساحات منظمة</span><h2 id="curbstone-title">البلدورات والأرصفة</h2></div><span className="blog-guide-count">{curbstonePosts.length} أدلة</span></div>
+        <div className="blog-grid">{curbstonePosts.map(post => <BlogCard key={post.slug} post={post} />)}</div>
       </section>
       <aside className="blog-help"><div><span className="eyebrow">حوّل الفكرة إلى خطة تنفيذ</span><h2>تخطط لمشروع رصف أو تنسيق حديقة؟</h2><p>شارك المدينة والمساحة وصور الموقع لمناقشة الخامات والمواصفات وعرض السعر.</p></div><Link className="button" href="/contact">ناقش مشروعك ↗</Link></aside>
     </div>
